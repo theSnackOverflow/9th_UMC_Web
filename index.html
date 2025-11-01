@@ -5,41 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2ssac's Todos</title>
     <link rel="stylesheet" href="./style.css">
-  
+    <script src="./src/script.ts"></script>
 </head>
 <body>
   <main class="todo-container">
     <h1 class="todo-header">Issac's TODO</h1>
     <section class="todo-form">
-      <input class="todo-form__input" placeholder="할 일 입력"/>
+      <input class="todo-form__input" placeholder="할 일 입력" required/>
       <button class="todo-form__button">할 일 추가</button>
     </section>
     <section class="render-container">
       <section class="render-section">
           <h2 class="render-title">할 일</h2>
-            <div class="render-list"> 
-              <div class="render-item">
+            <ul class="render-list"> 
+              <li class="render-item">
                 <span class="render-item__title">매튜</span>
-                <button class="render-item__button__complete">완료</button>
-              </div>
-              <div class="render-item">
+                <button 
+                  type="submit" class="render-item__button__complete">완료</button>
+              </li>
+              <li class="render-item">
                 <span class="render-item__title">매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜매튜</span>
                 <button class="render-item__button__complete">완료</button>
-              </div>
-          </div>
+              </li>
+          </ㅕ>
         </section>
         <section class="render-section">
           <h2 class="render-title">완료</h2>
-          <div class="render-list">
-            <div class="render-item">
+          <ul class="render-list">
+            <li class="render-item">
               <span class="render-item__title">오타니</span>
               <button class="render-item__button__delete">삭제</button>
-            </div>
-            <div class="render-item">
+            </li>
+            <li class="render-item">
               <span class="render-item__title">오타니 오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니오타니s</span>
               <button class="render-item__button__delete">삭제</button>
-            </div>
-          </div>
+            </li>
+          </ul>
         </section>
     </section>
   </main>
