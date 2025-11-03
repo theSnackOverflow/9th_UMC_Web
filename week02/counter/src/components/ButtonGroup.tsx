@@ -1,14 +1,8 @@
+import { useCount } from "../context/CounterProvider";
 import Button from "./Button";
 
-interface ButtonGroupProps {
-  handleIncrement: () => void;
-  handleDecrement: () => void;
-}
-
-const ButtonGroup = ({
-  handleIncrement,
-  handleDecrement,
-}: ButtonGroupProps) => {
+const ButtonGroup = () => {
+  const { handleDecrement, handleIncrement } = useCount();
   return (
     <div className="flex gap-2">
       <Button text="1 증가" onClick={handleIncrement} />
