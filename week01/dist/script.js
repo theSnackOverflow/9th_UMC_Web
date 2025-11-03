@@ -1,69 +1,71 @@
 "use strict";
-const todoInput = document.getElementById("todo-input");
-const todoForm = document.getElementById("todo-form");
-const todoList = document.getElementById("render-list");
-const doneList = document.getElementById("done-list");
-let todos = [];
-let doneTasks = [];
-const renderTasks = () => {
-    todoList.innerHTML = "";
-    doneList.innerHTML = "";
-    todos.forEach((todo) => {
-        const li = createTodoElement(todo, false);
-        todoList.appendChild(li);
-    });
-    doneTasks.forEach((todo) => {
-        const li = createTodoElement(todo, true);
-        doneList.appendChild(li);
-    });
-};
-const getTodoText = () => {
-    return todoInput.value.trim();
-};
-const addTodo = (text) => {
-    todos.push({ id: Date.now(), text });
-    todoInput.value = "";
-    renderTasks();
-};
-const completeTodo = (todo) => {
-    todos = todos.filter((t) => t.id !== todo.id);
-    doneTasks.push(todo);
-    renderTasks();
-};
-const deleteTodo = (todo) => {
-    doneTasks = doneTasks.filter((t) => t.id !== todo.id);
-    renderTasks();
-};
-const createTodoElement = (todo, isDone) => {
-    const li = document.createElement("li");
-    li.classList.add("render-item");
-    li.textContent = todo.text;
-    const button = document.createElement("button");
-    button.classList.add("render-item__button");
-    if (isDone) {
-        button.textContent = "삭제";
-        button.style.backgroundColor = "red";
-    }
-    else {
-        button.textContent = "완료";
-        button.style.backgroundColor = "rgb(56, 179, 56)";
-    }
-    button.addEventListener("click", () => {
+window.addEventListener("DOMContentLoaded", () => {
+    const todoInput = document.getElementById("todo-input");
+    const todoForm = document.getElementById("todo-form");
+    const todoList = document.getElementById("todo-list");
+    const doneList = document.getElementById("done-list");
+    let todos = [];
+    let doneTasks = [];
+    const renderTasks = () => {
+        todoList.innerHTML = "";
+        doneList.innerHTML = "";
+        todos.forEach((todo) => {
+            const li = createTodoElement(todo, false);
+            todoList.appendChild(li);
+        });
+        doneTasks.forEach((todo) => {
+            const li = createTodoElement(todo, true);
+            doneList.appendChild(li);
+        });
+    };
+    const getTodoText = () => {
+        return todoInput.value.trim();
+    };
+    const addTodo = (text) => {
+        todos.push({ id: Date.now(), text });
+        todoInput.value = "";
+        renderTasks();
+    };
+    const completeTask = (todo) => {
+        todos = todos.filter((t) => t.id !== todo.id);
+        doneTasks.push(todo);
+        renderTasks();
+    };
+    const deleteTask = (todo) => {
+        doneTasks = doneTasks.filter((t) => t.id !== todo.id);
+        renderTasks();
+    };
+    const createTodoElement = (todo, isDone) => {
+        const li = document.createElement("li");
+        li.classList.add("render-item");
+        li.textContent = todo.text;
+        const button = document.createElement("button");
+        button.classList.add("render-item__button__complete");
         if (isDone) {
-            deleteTodo(todo);
+            button.textContent = "삭제";
+            button.style.backgroundColor = "red";
         }
         else {
-            completeTodo(todo);
+            button.textContent = "완료";
+            button.style.backgroundColor = "green";
+        }
+        button.addEventListener("click", () => {
+            if (isDone) {
+                deleteTask(todo);
+            }
+            else {
+                completeTask(todo);
+            }
+        });
+        li.appendChild(button);
+        return li;
+    };
+    todoForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const text = getTodoText();
+        if (text) {
+            addTodo(text);
         }
     });
-    li.appendChild(button);
-    return li;
-};
-todoForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const text = getTodoText();
-    if (text) {
-        addTodo(text);
-    }
+    renderTasks();
 });
-renderTasks();
